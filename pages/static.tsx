@@ -1,5 +1,5 @@
 import { GetStaticProps, NextPage } from "next";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useState } from "react";
 import { Col, Container, Row } from "reactstrap";
 
 type ApiResponse = {
@@ -16,7 +16,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       staticData,
     },
-    revalidate: 10,
   };
 };
 
@@ -26,23 +25,16 @@ const Static: NextPage = (props: {
 }) => {
   const [clientSideData, setClientSideData] = useState<ApiResponse>();
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    const data = await fetch("/api/hello").then((res) => res.json());
-    setClientSideData(data);
-  };
-
   return (
     <Container tag="main">
       <h1 className="my-5">Como funcionam as renderizações do Next.js</h1>
 
       <Row>
         <Col>
-          <h3>Gerado estaticamente durante o build:</h3>
-          <h2>{props.staticData?.timestamp.toString()}</h2>
+          <h3>
+            Gerado estaticamente durante o build:{" "}
+            <h2>{props.staticData?.timestamp.toString()}</h2>
+          </h3>
         </Col>
 
         <Col>
