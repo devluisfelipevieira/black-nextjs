@@ -9,7 +9,7 @@ type ApiResponse = {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const serverSideData: ApiResponse = await fetch(
-    `${process.env.NEXT_PUBLIC_APIURL}/api/hello`
+    `${process.env.NEXT_PUBLIC_APIURL?.toString()}/api/hello`
   ).then((res) => res.json());
 
   return {
