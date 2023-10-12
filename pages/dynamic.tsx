@@ -6,7 +6,7 @@ type ApiResponse = {
   name: string;
   timestamp: Date;
 };
-
+//test
 export const getServerSideProps: GetServerSideProps = async () => {
   const serverSideData: ApiResponse = await fetch(
     `${process.env.NEXT_PUBLIC_APIURL}/api/hello`
